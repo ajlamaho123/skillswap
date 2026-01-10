@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Event | SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- AUTH CHECK -->
+  <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+    if (localStorage.getItem("role") !== "host") {
+      window.location.href = "dashboard-user.html";
+    }
+  </script>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">SkillSwap</div>
+    <div class="nav-links">
+      <a href="dashboard-host.html">Dashboard</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <!-- EDIT FORM -->
+  <section class="dashboard">
+    <div class="glass-card">
+      <h2>Edit Event</h2>
+      <form id="editEventForm">
+        <input type="text" id="editTitle" placeholder="Event Title" required>
+        <input type="text" id="editCategory" placeholder="Category" required>
+        <input type="number" id="editSpots" placeholder="Available Spots" required>
+        <button class="btn" type="submit">Save Changes</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="js/evente.js"></script>
+  <script>
+    const editEventId = localStorage.getItem("editEventId");
+    const eventToEdit = events.find(e => e.id == editEventId);
+
+    if (eventToEdit) {
+      document.getElementById("editTitle").value = eventToEdit.title;
+      document.getElementById("editCategory").value = eventToEdit.category;
+      document.getElementById("editSpots").value = eventToEdit.spots;
+    }
+
+    document.getElementById("editEventForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      eventToEdit.title = document.getElementById("editTitle").value;
+      eventToEdit.category = document.getElementById("editCategory").value;
+      eventToEdit.spots = parseInt(document.getElementById("editSpots").value);
+
+      localStorage.setItem("events", JSON.stringify(events));
+      alert("Event updated!");
+      window.location.href = "dashboard-host.html";
+    });
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

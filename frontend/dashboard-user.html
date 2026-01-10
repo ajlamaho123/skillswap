@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard | SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- AUTH CHECK -->
+  <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">SkillSwap</div>
+    <div class="nav-links">
+      <a href="event.html">Events</a>
+      <a href="dashboard-user.html">Dashboard</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <!-- DASHBOARD -->
+  <section class="dashboard">
+    
+<h1>Welcome back 👋</h1>
+<p class="subtitle">Explore and join events</p>
+
+
+    <!-- AVAILABLE EVENTS -->
+    <h2>Available Events</h2>
+    <div class="events-grid" id="availableEvents"></div>
+
+    <!-- JOINED EVENTS -->
+    <h2>Your Events</h2>
+    <div class="events-grid" id="joinedEvents">
+      <div class="glass-card">
+        <h3>Photography Walk</h3>
+        <p>Status: Registered</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <!-- copy i njejti footer -->
+
+  <script src="js/evente.js"></script>
+  <script>
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

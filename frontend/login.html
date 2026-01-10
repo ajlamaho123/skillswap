@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+
+  <!-- LOGIN CARD -->
+  <div class="auth-container glass-card">
+
+    <!-- IMAGE -->
+    <div class="auth-image">
+      <img src="img/login.jpg" alt="SkillSwap Login">
+    </div>
+
+    <!-- FORM -->
+    <div class="auth-form">
+      <h2>Welcome Back</h2>
+      <p>Log in to continue learning or hosting</p>
+
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+
+      <button class="btn" onclick="login()">Login</button>
+
+      <p class="auth-switch">
+        Don’t have an account?
+        <a href="register.html">Register</a>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <!-- (copy the same footer from index.html) -->
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

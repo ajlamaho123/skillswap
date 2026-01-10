@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Details | SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- AUTH CHECK -->
+  <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">SkillSwap</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard-user.html">Dashboard</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <!-- EVENT DETAILS -->
+  <section class="dashboard">
+    <div id="event-details" class="glass-card"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <!-- copy footer from index.html -->
+
+  <script src="js/evente.js"></script>
+  <script src="js/event-detaje.js"></script>
+  <script>
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

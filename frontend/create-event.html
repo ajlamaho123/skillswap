@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Event</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">SkillSwap</div>
+    <div>
+      <a href="dashboard-host.html">Dashboard</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <h2>Create New Event</h2>
+    <p>Share your skills with others</p>
+  </section>
+
+  <section class="events-grid">
+    <div class="glass-card" style="max-width:420px;margin:auto;">
+      <form id="createEventForm">
+        <input type="text" id="title" placeholder="Event title" required>
+        <input type="text" id="category" placeholder="Category" required>
+        <input type="text" id="host" placeholder="Your name" required>
+        <input type="number" id="spots" placeholder="Available spots" required>
+
+        <button class="btn" type="submit">Create Event</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="js/create-event.js"></script>
+  <footer class="footer">
+  <div class="footer-content">
+    
+    <div class="footer-brand">
+      <h3>SkillSwap</h3>
+      <p>Learn. Teach. Connect.</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#categories">Categories</a>
+      <a href="#featured">Events</a>
+      <a href="register.html">Join</a>
+    </div>
+
+    <div class="footer-social">
+      <span>Follow us</span>
+      <div class="social-icons">
+        <a href="#">🌐</a>
+        <a href="#">📸</a>
+        <a href="#">💬</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 SkillSwap. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

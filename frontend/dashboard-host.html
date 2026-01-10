@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Host Dashboard | SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- AUTH CHECK -->
+  <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+    if (localStorage.getItem("role") !== "host") {
+      window.location.href = "dashboard-user.html";
+    }
+  </script>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">SkillSwap</div>
+    <div class="nav-links">
+      <a href="create-event.html">Create Event</a>
+      <a href="dashboard-host.html">Dashboard</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <!-- DASHBOARD -->
+  <section class="dashboard">
+
+   <h1>Host Dashboard 🎓</h1>
+<p class="subtitle">Manage your events</p>
+
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="glass-card">
+        <h3>Total Events</h3>
+        <p id="totalEvents">0</p>
+      </div>
+      <div class="glass-card">
+        <h3>Total Participants</h3>
+        <p>24</p>
+      </div>
+      <div class="glass-card">
+        <h3>Average Rating</h3>
+        <p>⭐ 4.8</p>
+      </div>
+    </div>
+
+    <!-- MY EVENTS -->
+    <h2>My Events</h2>
+    <div class="events-grid" id="hostEvents"></div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <!-- copy i njejti footer -->
+
+  <script src="js/evente.js"></script>
+  <script>
+    function logout() {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

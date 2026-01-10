@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-container glass-card">
+
+    <div class="auth-image">
+      <img src="img/register.jpg" alt="Register">
+    </div>
+
+    <div class="auth-form">
+      <h2>Create Account</h2>
+      <p>Join SkillSwap and start sharing skills</p>
+
+      <input type="text" id="registerName" placeholder="Full Name">
+      <input type="email" id="registerEmail" placeholder="Email">
+      <input type="password" id="registerPassword" placeholder="Password">
+
+      <div class="role-select">
+        <label>
+          <input type="radio" name="role" value="user" checked>
+          Participant
+        </label>
+        <label>
+          <input type="radio" name="role" value="host">
+          Host
+        </label>
+      </div>
+
+      <button class="btn" onclick="register()">Register</button>
+
+      <p class="auth-switch">
+        Already have an account?
+        <a href="login.html">Login</a>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
