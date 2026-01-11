@@ -1,44 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Event Details | SkillSwap</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    body {
+      background-color: #121826;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 100px auto;
+      padding: 20px;
+    }
+
+    /* TITLES */
+    h1 {
+      color: #0f172a; /* DARK, HIGH CONTRAST */
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    /* LIST VIEW */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .event-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+    }
+
+    .event-card h2 {
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+
+    .event-meta {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 16px;
+    }
+
+    .event-description {
+      font-size: 15px;
+      color: #1e293b;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background-color: #2563eb;
+      color: #ffffff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      background-color: #1d4ed8;
+    }
+
+    /* DETAILS VIEW */
+    .details-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+      max-width: 800px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #93c5fd;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- AUTH CHECK -->
-  <script>
-    if (localStorage.getItem("loggedIn") !== "true") {
-      window.location.href = "login.html";
-    }
-  </script>
-
-  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">SkillSwap</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="dashboard-user.html">Dashboard</a>
-      <a href="#" onclick="logout()">Logout</a>
-    </div>
   </nav>
 
-  <!-- EVENT DETAILS -->
-  <section class="dashboard">
-    <div id="event-details" class="glass-card"></div>
-  </section>
+  <main class="container" id="content"></main>
 
-  <!-- FOOTER -->
-  <!-- copy footer from index.html -->
+  <footer class="footer">
+    <p>&copy; 2025 SkillSwap. All rights reserved.</p>
+  </footer>
 
-  <script src="js/evente.js"></script>
-  <script src="js/event-detaje.js"></script>
   <script>
-    function logout() {
-      localStorage.clear();
-      window.location.href = "login.html";
+    const content = document.getElementById("content");
+
+    const events = [
+      {
+        id: 1,
+        title: "JavaScript Workshop",
+        date: "March 20, 2025",
+        location: "Online",
+        description: "Learn core JavaScript concepts through hands-on practice."
+      },
+      {
+        id: 2,
+        title: "Design Thinking",
+        date: "April 5, 2025",
+        location: "Tirana",
+        description: "Improve your problem-solving skills using design thinking methods."
+      },
+      {
+        id: 3,
+        title: "Python for Beginners",
+        date: "April 12, 2025",
+        location: "Online",
+        description: "A practical introduction to Python for aspiring developers."
+      },
+      {
+        id: 4,
+        title: "UI/UX Fundamentals",
+        date: "April 18, 2025",
+        location: "Online",
+        description: "Understand the fundamentals of user interface and user experience design."
+      },
+      {
+        id: 5,
+        title: "React Basics",
+        date: "April 25, 2025",
+        location: "Tirana",
+        description: "Build your first React components and understand the basics of React."
+      }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get("id");
+
+    if (eventId) {
+      const event = events.find(e => e.id == eventId);
+
+      if (!event) {
+        content.innerHTML = "<h1>Event not found</h1>";
+      } else {
+        content.innerHTML = `
+          <a class="back-link" href="event-detaje.html">← Back to events</a>
+          <div class="details-card">
+            <h1>${event.title}</h1>
+            <div class="event-meta">
+              📅 ${event.date} &nbsp; | &nbsp; 📍 ${event.location}
+            </div>
+            <p class="event-description">${event.description}</p>
+          </div>
+        `;
+      }
+    } else {
+      content.innerHTML = `
+        <h1 style="color:#f9fafb">Available Events</h1>
+        <div class="events-grid">
+          ${events.map(event => `
+            <div class="event-card">
+              <h2>${event.title}</h2>
+              <div class="event-meta">
+                📅 ${event.date} | 📍 ${event.location}
+              </div>
+              <p class="event-description">
+                ${event.description}
+              </p>
+              <a class="btn" href="event-detaje.html?id=${event.id}">
+                View Details
+              </a>
+            </div>
+          `).join("")}
+        </div>
+      `;
     }
   </script>
+
 </body>
 </html>
