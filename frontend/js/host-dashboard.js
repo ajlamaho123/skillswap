@@ -1,36 +1,53 @@
-const container = document.getElementById("host-events");
-const events = JSON.parse(localStorage.getItem("events")) || [];
+// ================= AUTH GUARD =================
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-if (events.length === 0) {
-  container.innerHTML = `
-    <div class="glass-card">
-      <h3>No events created</h3>
-      <p>Create your first event and start teaching.</p>
-      <a href="create-event.html" class="btn">Create Event</a>
-    </div>
-  `;
-} else {
-  events.forEach((event, index) => {
-    container.innerHTML += `
-      <div class="event-card">
-        <h3>${event.title}</h3>
-        <p>${event.category}</p>
-        <p>Spots: ${event.spots}</p>
+if (!currentUser) {
+  window.location.href = "login.html";
+}
 
-        <button class="btn" onclick="editEvent(${index})">Edit</button>
-        <button class="btn" onclick="deleteEvent(${index})">Delete</button>
-      </div>
+if (currentUser.role !== "host") {
+  window.location.href = "dashboard-user.html";
+}
+
+// ================= LOAD HOST EVENTS =================
+const hostEventsContainer = document.getElementById("hostEvents");
+
+function loadHostEvents() {
+  const events = JSON.parse(localStorage.getItem("events")) || [];
+
+  hostEventsContainer.innerHTML = "";
+
+  const hostEvents = events.filter(
+    event => event.host === currentUser.email
+  );
+
+  if (hostEvents.length === 0) {
+    hostEventsContainer.innerHTML = "<p>No events created yet.</p>";
+    return;
+  }
+
+  hostEvents.forEach(event => {
+    const div = document.createElement("div");
+    div.classList.add("event-card");
+
+    div.innerHTML = `
+      <h3>${event.title}</h3>
+      <p>${event.description}</p>
+      <p><strong>Date:</strong> ${event.date}</p>
+      <p><strong>Participants:</strong> ${event.participants.length}</p>
     `;
+
+    hostEventsContainer.appendChild(div);
   });
 }
 
-function deleteEvent(index) {
-  events.splice(index, 1);
-  localStorage.setItem("events", JSON.stringify(events));
-  location.reload();
-}
+loadHostEvents();
 
-function editEvent(index) {
-  localStorage.setItem("editEventIndex", index);
-  window.location.href = "edit-event.html";
+// ================= LOGOUT =================
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", function () {
+    localStorage.removeItem("currentUser");
+    window.location.href = "login.html";
+  });
 }

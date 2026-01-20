@@ -1,68 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Create Event</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <title>Create SkillSwap Event</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4338ca;
+    }
+
+    .success {
+      margin-top: 20px;
+      color: green;
+      text-align: center;
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="navbar">
-    <div class="logo">SkillSwap</div>
-    <div>
-      <a href="dashboard-host.html">Dashboard</a>
-    </div>
+  <div class="container">
+    <h1>Create SkillSwap Event</h1>
+
+    <form id="eventForm">
+      <label>Event Title</label>
+      <input type="text" id="title" placeholder="Learn Java in 2 hours" required />
+
+      <label>Description</label>
+      <textarea id="description" placeholder="Beginner-friendly peer-led session" required></textarea>
+
+      <label>Skill You Teach</label>
+      <input type="text" id="skill" placeholder="Java / Photography / Arabic" required />
+
+      <label>Skill Level</label>
+      <select id="level">
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+      </select>
+
+      <label>Max Participants</label>
+      <input type="number" id="limit" min="1" value="10" required />
+
+      <button type="submit">Create Event</button>
+    </form>
+
+    <p class="success" id="successMessage">
+      Event created successfully 🎉
+    </p>
   </div>
 
-  <section class="hero">
-    <h2>Create New Event</h2>
-    <p>Share your skills with others</p>
-  </section>
+  <script>
+    const form = document.getElementById("eventForm");
+    const successMessage = document.getElementById("successMessage");
 
-  <section class="events-grid">
-    <div class="glass-card" style="max-width:420px;margin:auto;">
-      <form id="createEventForm">
-        <input type="text" id="title" placeholder="Event title" required>
-        <input type="text" id="category" placeholder="Category" required>
-        <input type="text" id="host" placeholder="Your name" required>
-        <input type="number" id="spots" placeholder="Available spots" required>
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-        <button class="btn" type="submit">Create Event</button>
-      </form>
-    </div>
-  </section>
+      const event = {
+        id: Date.now(),
+        title: document.getElementById("title").value,
+        description: document.getElementById("description").value,
+        skill: document.getElementById("skill").value,
+        level: document.getElementById("level").value,
+        limit: document.getElementById("limit").value,
+        participants: 0
+      };
 
-  <script src="js/create-event.js"></script>
-  <footer class="footer">
-  <div class="footer-content">
-    
-    <div class="footer-brand">
-      <h3>SkillSwap</h3>
-      <p>Learn. Teach. Connect.</p>
-    </div>
+      let events = JSON.parse(localStorage.getItem("skillswapEvents")) || [];
+      events.push(event);
+      localStorage.setItem("skillswapEvents", JSON.stringify(events));
 
-    <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#categories">Categories</a>
-      <a href="#featured">Events</a>
-      <a href="register.html">Join</a>
-    </div>
-
-    <div class="footer-social">
-      <span>Follow us</span>
-      <div class="social-icons">
-        <a href="#">🌐</a>
-        <a href="#">📸</a>
-        <a href="#">💬</a>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2026 SkillSwap. All rights reserved.</p>
-  </div>
-</footer>
+      successMessage.style.display = "block";
+      form.reset();
+    });
+  </script>
 
 </body>
 </html>

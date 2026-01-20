@@ -1,198 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Event Details | SkillSwap</title>
-
-  <link rel="stylesheet" href="css/style.css" />
-
-  <style>
-    body {
-      background-color: #121826;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 100px auto;
-      padding: 20px;
-    }
-
-    /* TITLES */
-    h1 {
-      color: #0f172a; /* DARK, HIGH CONTRAST */
-      font-size: 32px;
-      margin-bottom: 16px;
-    }
-
-    /* LIST VIEW */
-    .events-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 28px;
-    }
-
-    .event-card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .event-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.45);
-    }
-
-    .event-card h2 {
-      color: #0f172a;
-      margin-bottom: 12px;
-    }
-
-    .event-meta {
-      font-size: 14px;
-      color: #475569;
-      margin-bottom: 16px;
-    }
-
-    .event-description {
-      font-size: 15px;
-      color: #1e293b;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 10px 18px;
-      background-color: #2563eb;
-      color: #ffffff;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .btn:hover {
-      background-color: #1d4ed8;
-    }
-
-    /* DETAILS VIEW */
-    .details-card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.4);
-      max-width: 800px;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: #93c5fd;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">SkillSwap</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#featured">Events</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
   </nav>
 
-  <main class="container" id="content"></main>
+  <!-- EVENT DETAILS -->
+  <section class="event-details">
+    <div id="eventContainer" class="glass-card" style="max-width:700px; margin:auto;">
+      <!-- Event data injected here -->
+    </div>
+  </section>
 
-  <footer class="footer">
-    <p>&copy; 2025 SkillSwap. All rights reserved.</p>
-  </footer>
-
+  <!-- SCRIPT -->
   <script>
-    const content = document.getElementById("content");
-
-    const events = [
-      {
-        id: 1,
-        title: "JavaScript Workshop",
-        date: "March 20, 2025",
-        location: "Online",
-        description: "Learn core JavaScript concepts through hands-on practice."
-      },
-      {
-        id: 2,
-        title: "Design Thinking",
-        date: "April 5, 2025",
-        location: "Tirana",
-        description: "Improve your problem-solving skills using design thinking methods."
-      },
-      {
-        id: 3,
-        title: "Python for Beginners",
-        date: "April 12, 2025",
-        location: "Online",
-        description: "A practical introduction to Python for aspiring developers."
-      },
-      {
-        id: 4,
-        title: "UI/UX Fundamentals",
-        date: "April 18, 2025",
-        location: "Online",
-        description: "Understand the fundamentals of user interface and user experience design."
-      },
-      {
-        id: 5,
-        title: "React Basics",
-        date: "April 25, 2025",
-        location: "Tirana",
-        description: "Build your first React components and understand the basics of React."
-      }
-    ];
-
     const params = new URLSearchParams(window.location.search);
     const eventId = params.get("id");
 
-    if (eventId) {
-      const event = events.find(e => e.id == eventId);
+    const events = JSON.parse(localStorage.getItem("skillswapEvents")) || [];
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 
-      if (!event) {
-        content.innerHTML = "<h1>Event not found</h1>";
-      } else {
-        content.innerHTML = `
-          <a class="back-link" href="event-detaje.html">← Back to events</a>
-          <div class="details-card">
-            <h1>${event.title}</h1>
-            <div class="event-meta">
-              📅 ${event.date} &nbsp; | &nbsp; 📍 ${event.location}
-            </div>
-            <p class="event-description">${event.description}</p>
-          </div>
-        `;
-      }
-    } else {
-      content.innerHTML = `
-        <h1 style="color:#f9fafb">Available Events</h1>
-        <div class="events-grid">
-          ${events.map(event => `
-            <div class="event-card">
-              <h2>${event.title}</h2>
-              <div class="event-meta">
-                📅 ${event.date} | 📍 ${event.location}
-              </div>
-              <p class="event-description">
-                ${event.description}
-              </p>
-              <a class="btn" href="event-detaje.html?id=${event.id}">
-                View Details
-              </a>
-            </div>
-          `).join("")}
-        </div>
+    const event = events.find(e => e.id == eventId);
+    const container = document.getElementById("eventContainer");
+
+    if (!event) {
+      container.innerHTML = "<h3>Event not found</h3>";
+      throw new Error("Event not found");
+    }
+
+    const isJoined =
+      loggedUser &&
+      event.joinedUsers &&
+      event.joinedUsers.includes(loggedUser.email);
+
+    const isFull = event.participants >= event.limit;
+
+    container.innerHTML = `
+      <h2>${event.title}</h2>
+      <p><strong>Skill:</strong> ${event.skill}</p>
+      <p><strong>Level:</strong> ${event.level}</p>
+      <p><strong>Host:</strong> ${event.hostName || "Verified Host"}</p>
+      <p><strong>Description:</strong></p>
+      <p>${event.description || "No description provided."}</p>
+
+      <hr>
+
+      <p>👥 Participants: ${event.participants} / ${event.limit}</p>
+
+      <div id="actionArea" style="margin-top:20px;"></div>
+    `;
+
+    const actionArea = document.getElementById("actionArea");
+
+    // USER NOT LOGGED IN
+    if (!loggedUser) {
+      actionArea.innerHTML = `
+        <p>You must be logged in to join this event.</p>
+        <a href="login.html" class="btn">Login to Join</a>
       `;
+    }
+
+    // USER ALREADY JOINED
+    else if (isJoined) {
+      actionArea.innerHTML = `
+        <p style="color:green;">✔ You have already joined this event.</p>
+      `;
+    }
+
+    // EVENT FULL
+    else if (isFull) {
+      actionArea.innerHTML = `
+        <p style="color:red;">❌ This event is full.</p>
+      `;
+    }
+
+    // USER CAN JOIN
+    else {
+      actionArea.innerHTML = `
+        <button class="btn" onclick="joinEvent()">Join Event</button>
+      `;
+    }
+
+    function joinEvent() {
+      event.participants++;
+
+      if (!event.joinedUsers) {
+        event.joinedUsers = [];
+      }
+
+      event.joinedUsers.push(loggedUser.email);
+
+      localStorage.setItem("skillswapEvents", JSON.stringify(events));
+      location.reload();
     }
   </script>
 
