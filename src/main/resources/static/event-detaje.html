@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get("id");
+
+    const user = localStorage.getItem("loggedUser");
+    const role = localStorage.getItem("role"); // "user" | "host"
+
+    if (!eventId) {
+      document.body.innerHTML = "<h3>Event ID mungon</h3>";
+    } else if (!user || role === "user") {
+      // User ose jo i loguar
+      window.location.replace(`/event-detaje-user.html?id=${eventId}`);
+    } else {
+      // Host
+      window.location.replace(`/event-detaje-host.html?id=${eventId}`);
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>

@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Edit Event | SkillSwap</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
   <!-- AUTH CHECK -->
   <script>
     if (localStorage.getItem("loggedIn") !== "true") {
-      window.location.href = "login.html";
+      window.location.href = "/login.html";
     }
     if (localStorage.getItem("role") !== "host") {
-      window.location.href = "dashboard-user.html";
+      window.location.href = "/dashboard-user.html";
     }
   </script>
 
@@ -21,7 +21,7 @@
   <nav class="navbar">
     <div class="logo">SkillSwap</div>
     <div class="nav-links">
-      <a href="dashboard-host.html">Dashboard</a>
+      <a href="/dashboard-host.html">Dashboard</a>
       <a href="#" onclick="logout()">Logout</a>
     </div>
   </nav>
@@ -39,7 +39,7 @@
     </div>
   </section>
 
-  <script src="js/evente.js"></script>
+  <script src="/js/evente.js"></script>
   <script>
     const editEventId = localStorage.getItem("editEventId");
     const eventToEdit = events.find(e => e.id == editEventId);
@@ -59,12 +59,12 @@
 
       localStorage.setItem("events", JSON.stringify(events));
       alert("Event updated!");
-      window.location.href = "dashboard-host.html";
+      window.location.href = "/dashboard-host.html";
     });
 
     function logout() {
-      localStorage.clear();
-      window.location.href = "login.html";
+      // localStorage.clear();
+      window.location.href = "/login.html";
     }
   </script>
 </body>

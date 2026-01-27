@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSwap — Learn & Share Skills</title>
+
+  <!-- CSS bazë (projekti yt) -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/home.css" />
+</head>
+
+<body class="home-page">
+
+  <!-- ================= HEADER (GoTravel style) ================= -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/index.html" class="nav__logo">
+        <span class="logo-dot"></span>
+        <p>SkillSwap</p>
+      </a>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li><a href="#home" class="nav__link">Home</a></li>
+          <li><a href="#about" class="nav__link">About</a></li>
+          <li><a href="#categories" class="nav__link">Categories</a></li>
+          <li><a href="#featured" class="nav__link">Events</a></li>
+          <li><a href="#reviews" class="nav__link">Reviews</a></li>
+        </ul>
+
+        <div class="nav__cta">
+          <a href="/register.html" class="btn small-btn">Join</a>
+          <!-- <a href="/login.html" class="btn small-btn">Login</a> -->
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero hero--image" id="home">
+   <!-- foto poshtë navbar-it -->
+   <img class="hero__bg" src="https://images.unsplash.com/photo-1598770220477-cec551a23f53?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="SkillSwap cover" />
+
+   <div class="hero-inner">
+    <div class="hero-content">
+      <h1 style="font-size:72px; line-height:0.95; margin-bottom:14px;">
+        Learn<br/>Teach<br/>Together
+      </h1>
+
+      <p style="max-width:560px; color: var(--text-muted);">
+        SkillSwap është një komunitet ku njerëzit organizojnë evente për të mësuar dhe
+        ndarë aftësi në mënyrë praktike, miqësore dhe reale — jo thjesht “kurs online”.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#categories" class="btn">Explore Events</a>
+        <a href="/register.html" class="btn">Become a Member</a>
+      </div>
+    </div>
+
+    <div class="glass-panel">
+      <h3 style="margin-bottom:6px;">✨ This week’s vibe</h3>
+      <p style="color:var(--text-muted); margin-bottom:14px;">Coding • Photography • Languages • Fitness</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div class="glass-panel" style="padding:12px;">🧑‍🏫 Workshops</div>
+        <div class="glass-panel" style="padding:12px;">🤝 Peer Learning</div>
+        <div class="glass-panel" style="padding:12px;">💛 New Friends</div>
+        <div class="glass-panel" style="padding:12px;">📍 Local Meetups</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+        <a href="/event.html" class="btn">All Events</a>
+        <a href="/login.html" class="btn">Dashboard</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section__title">Why SkillSwap?</h2>
+
+        <div class="grid cards-3">
+          <article class="glass-card">
+            <h3>🤝 Peer-to-Peer Learning</h3>
+            <p class="muted">Eventet drejtohen nga komuniteti — mësim i hapur dhe praktik.</p>
+          </article>
+
+          <article class="glass-card">
+            <h3>💡 Any Skill, Any Level</h3>
+            <p class="muted">Nga programimi e deri te gjuhët — fillestar apo i avancuar.</p>
+          </article>
+
+          <article class="glass-card">
+            <h3>🌍 Community & Growth</h3>
+            <p class="muted">Lidhu me njerëz, krijo rrjet dhe rritu bashkë me të tjerët.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CATEGORIES (GoTravel destination vibe) ================= -->
+    <section id="categories" class="categories">
+  <h2 class="section-title">Skill Categories</h2>
+
+  <div class="events-grid">
+    <article class="card">
+      <div class="card__media">
+        <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=906&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Programming">
+      </div>
+      <div class="card__body">
+        <h3>💻 Programming</h3>
+        <p style="color:var(--text-muted);">Build real projects, learn faster.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://images.unsplash.com/photo-1724776919347-190a687323e8?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Photography">
+      </div>
+      <div class="card__body">
+        <h3>📷 Photography</h3>
+        <p style="color:var(--text-muted);">Walks, edits, storytelling.
+          Capture the moment</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fitness">
+      </div>
+      <div class="card__body">
+        <h3>🧘 Fitness</h3>
+        <p style="color:var(--text-muted);">Well-being and confidence.
+          Build your dream body. 
+        </p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__media">
+        <img src="https://images.unsplash.com/photo-1706403615881-d83dc2067c5d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Languages">
+      </div>
+      <div class="card__body">
+        <h3>🌍 Languages</h3>
+        <p style="color:var(--text-muted);">Conversation cafés & culture.
+          Speak like a local.
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+    <!-- ================= FEATURED EVENTS (KJO DUHET TË MBETET) ================= -->
+  <section id="eventsContainer featured" class="featured-events">
+  <h2 class="section__title">Upcoming Events</h2>
+  <p class="section__subtitle">Kliko një event për detaje dhe regjistrim.</p>
+  <a href="/login.html" class="btn small-btn">Browse Events</a>
+
+  <div id="eventsContainer" class="events-grid events-grid--2">
+    <!-- Eventet do të ngarkohen këtu nga evente.js -->
+  </div>
+</section>
+
+    <!-- ================= REVIEWS (testimonial vibe) ================= -->
+    <section id="reviews" class="section">
+      <div class="container">
+        <h2 class="section__title">What Participants Say</h2>
+
+        <div class="grid cards-3">
+          <article class="glass-card">
+            <p>“SkillSwap m’i bëri eventet super praktike. Mësova më shpejt se kur studioj vetëm.”</p>
+            <h4 class="muted">— Alex</h4>
+          </article>
+
+          <article class="glass-card">
+            <p>“Si host, më pëlqeu shumë atmosfera. Njerëzit vijnë për të mësuar realisht.”</p>
+            <h4 class="muted">— Sara</h4>
+          </article>
+
+          <article class="glass-card">
+            <p>“Njoh njerëz të rinj + mësim i vërtetë. Kombinim perfekt.”</p>
+            <h4 class="muted">— Mark</h4>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section id="cta" class="cta">
+  <div class="cta__container">
+    
+    <!-- LEFT: glass card -->
+    <div class="cta__card">
+      <h2 class="cta__title">Ready to join SkillSwap?</h2>
+      <p class="cta__text">
+        Regjistrohu si përdorues, bashkohu në evente dhe lë vlerësime.
+        Hostët krijojnë evente nga dashboard.
+      </p>
+
+      <div class="cta__actions">
+        <a href="/register.html" class="btn">Join Now</a>
+        <a href="/login.html" class="btn">Browse Events</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: image (no blur) -->
+    <div class="cta__image">
+      <img src="https://images.unsplash.com/photo-1598770220477-cec551a23f53?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="SkillSwap community" />
+    </div>
+
+  </div>
+</section>
+
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>SkillSwap</h3>
+        <p>Learn. Teach. Connect.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#categories">Categories</a>
+        <a href="#featured">Events</a>
+        <a href="/register.html">Join</a>
+      </div>
+
+      <div class="footer-social">
+        <span>Follow us</span>
+        <div class="social-icons">
+          <a href="#">🌐</a>
+          <a href="#">📸</a>
+          <a href="#">💬</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 SkillSwap. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scriptet ekzistuese (MOS i ndrysho) -->
+  <script src="/js/api.js"></script>
+  <script src="/js/evente.js"></script>
+
+  <!-- vetëm për header scroll effect (pa prekur js files) -->
+  <script>
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) header.classList.add("bg-header");
+      else header.classList.remove("bg-header");
+    });
+  </script>
+
+</body>
+</html>

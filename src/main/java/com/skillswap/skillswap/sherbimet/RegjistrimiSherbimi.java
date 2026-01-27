@@ -78,7 +78,7 @@ public class RegjistrimiSherbimi {
                         r.getEventi().getData().toString(),
                         r.getEventi().getOra().toString(),
                         r.getEventi().getVendndodhja(),
-                        r.getEventi().getStatusi().name()
+                        r.getEventi().getStatusi().name()      
                 ))
                 .toList();
     }

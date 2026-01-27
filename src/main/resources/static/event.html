@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body class="home-page">
+
+<header class="header" id="header">
+    <nav class="nav container">
+      <a href="/event.html" class="nav__logo">
+        <span class="logo-dot"></span>
+        <p>SkillSwap</p>
+      </a>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li><a href="#home" class="nav__link">Home</a></li>
+          <li><a href="#about" class="nav__link">About</a></li>
+          <li><a href="#events-container" class="nav__link">Events</a></li>
+        </ul>
+
+        <div class="nav__cta">
+          <a href="/register.html" class="btn small-btn">Join</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero hero--image" id="home">
+   <!-- foto poshtë navbar-it -->
+   <img class="hero__bg" src="https://images.unsplash.com/photo-1598770220477-cec551a23f53?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="SkillSwap cover" />
+
+   <div class="hero-inner">
+    <div class="hero-content">
+      <h1 style="font-size:72px; line-height:0.95; margin-bottom:14px;">
+        Available Events
+      </h1>
+
+      <p style="max-width:560px; color: var(--text-muted);">
+        Learn & teach skills from the community
+      </p>
+
+      <div class="hero-actions">
+        <a href="/register.html" class="btn">Explore Events</a>
+        <a href="/index.html" class="btn">Go Back</a>
+      </div>
+    </div>
+
+    <div class="glass-panel">
+      <h3 style="margin-bottom:6px;">Want to Learn New Things</h3>
+      <p style="color:var(--text-muted); margin-bottom:14px;">Coding • Photography • Languages • Fitness</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div class="glass-panel" style="padding:12px;">Join events</div>
+        <div class="glass-panel" style="padding:12px;">🤝 Peer Learning</div>
+        <div class="glass-panel" style="padding:12px;">💛 New Friends</div>
+        <div class="glass-panel" style="padding:12px;">📍 Local Meetups</div>
+      </div>
+
+      <!-- <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;">
+        <a href="/event.html" class="btn">All Events</a>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+ <section class="featured-events">
+
+  <div id="events-container" class="events-grid events-grid--2">
+    <!-- Eventet do të ngarkohen këtu nga evente.js -->
+  </div>
+</section>
+
+</main>
+<script src="/js/api.js"></script>
+<script src="/js/events-list.js"></script>
+<script src="/js/evente.js"></script>
+
+
+ <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>SkillSwap</h3>
+        <p>Learn. Teach. Connect.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#categories">Categories</a>
+        <a href="#featured">Events</a>
+        <a href="/register.html">Join</a>
+      </div>
+
+      <div class="footer-social">
+        <span>Follow us</span>
+        <div class="social-icons">
+          <a href="#">🌐</a>
+          <a href="#">📸</a>
+          <a href="#">💬</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 SkillSwap. All rights reserved.</p>
+    </div>
+  </footer>
+
+ <script>
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) header.classList.add("bg-header");
+      else header.classList.remove("bg-header");
+    });
+  </script>
+
+</body>
+</html>

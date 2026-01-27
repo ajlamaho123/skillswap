@@ -8,6 +8,6 @@ public class TestKontrollor {
 
     @GetMapping("/")
     public String home() {
-        return "SkillSwap backend po punon ✅";
+        return "SkillSwap backend po punon ";
     }
 }

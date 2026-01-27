@@ -142,7 +142,7 @@ public class DataSeeder implements CommandLineRunner {
         v2.setDataKrijimit(LocalDateTime.now());
         vleresimiRuajtesa.save(v2);
 
-        System.out.println("✅ DataSeeder: u futen kategori, usera, evente, regjistrime dhe vleresime.");
+        System.out.println(" DataSeeder: u futen kategori, usera, evente, regjistrime dhe vleresime.");
         System.out.println("👉 Login demo:");
         System.out.println("Host: host1@gmail.com / 12345");
         System.out.println("User2: ana@gmail.com / 12345");
@@ -167,6 +167,7 @@ public class DataSeeder implements CommandLineRunner {
         e.setStatusi(StatusEventi.AKTIV);
         e.setHost(host);
         e.setKategoria(kategori);
+        
         return e;
     }
 }

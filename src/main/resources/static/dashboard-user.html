@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard | SkillSwap</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body class="home-page">
+
+  <!-- AUTH CHECK -->
+ <script>
+  const u = JSON.parse(localStorage.getItem("loggedUser"));
+  if (!u) location.href = "/login.html";
+  // user dashboard lejo PERDORUES
+  if (u.roli !== "PERDORUES") location.href = "/dashboard-host.html";
+</script>
+
+
+  <!-- NAVBAR -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="/index.html" class="nav__logo">
+        <span class="logo-dot"></span>
+        <p>SkillSwap</p>
+      </a>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li><a href="#featured" class="nav__link">Categories</a></li>
+          <li><a href="#footer" class="nav__link">About</a></li>
+        </ul>
+
+        <div class="nav__cta">
+          <a href="/index.html" class="btn small-btn" onclick="logout()">Log Out</a>
+          <!-- <a href="/login.html" class="btn small-btn">Login</a> -->
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+     <section class="hero hero--image" id="home">
+   <!-- foto poshtë navbar-it -->
+   <img class="hero__bg" src="https://images.unsplash.com/photo-1598770220477-cec551a23f53?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="SkillSwap cover" />
+
+   <div class="hero-inner section__title">
+    <div class="hero-content" >
+      <h1 style="font-size:72px; line-height:0.95; margin-bottom:14px; text-align: center;">
+        Welcome back
+      </h1>
+
+      <p style="max-width:560px; color: var(--text-muted);">
+        Explore and join events
+      </p>
+  </div>
+</section>
+
+    <!-- AVAILABLE EVENTS -->
+     <section id="featured" class="featured-events">
+    <h2 class="section__title">Available Events</h2>
+    <div class="events-grid events-grid--2" id="availableEvents">
+      <!-- Eventet do të ngarkohen këtu nga dashboard-user.js -->
+</section>
+    <!-- JOINED EVENTS -->
+     <section  id=" featured" class="featured-events">
+    <h2 class="section__title">Your Events</h2>
+    <div class="events-grid events-grid--2" id="joinedEvents">
+    </div>
+</section>
+  </section>
+</main>
+  <!-- FOOTER -->
+   <footer class="footer" id="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>SkillSwap</h3>
+        <p>Learn. Teach. Connect.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#categories">Categories</a>
+        <a href="#featured">Events</a>
+        <a href="/register.html">Join</a>
+      </div>
+
+      <div class="footer-social">
+        <span>Follow us</span>
+        <div class="social-icons">
+          <a href="#">🌐</a>
+          <a href="#">📸</a>
+          <a href="#">💬</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 SkillSwap. All rights reserved.</p>
+    </div>
+  </footer>
+  
+   <script src="/js/api.js"></script>
+   <script src="/js/dashboard-user.js"></script>
+  <script src="/js/evente.js"></script>
+  <script>
+    function logout() {
+      // localStorage.clear();
+      window.location.href = "/login.html";
+    }
+
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) header.classList.add("bg-header");
+      else header.classList.remove("bg-header");
+    });
+  </script>
+</body>
+</html>

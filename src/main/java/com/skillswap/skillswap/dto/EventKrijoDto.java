@@ -9,6 +9,7 @@ public class EventKrijoDto {
     private String ora;  // "HH:mm"
     private String vendndodhja;
     private int kufiriPjesemarresve;
+    private String fotoUrl; // ✅ NEW
 
     public EventKrijoDto() {}
 
@@ -35,4 +36,7 @@ public class EventKrijoDto {
 
     public int getKufiriPjesemarresve() { return kufiriPjesemarresve; }
     public void setKufiriPjesemarresve(int kufiriPjesemarresve) { this.kufiriPjesemarresve = kufiriPjesemarresve; }
+
+    public String getFotoUrl() { return fotoUrl; }              // ✅
+    public void setFotoUrl(String fotoUrl) { this.fotoUrl = fotoUrl; } // ✅
 }

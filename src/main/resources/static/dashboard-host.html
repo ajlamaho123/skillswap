@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Host Dashboard | SkillSwap</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- AUTH CHECK -->
+    <script>
+      const u = JSON.parse(localStorage.getItem("loggedUser"));
+      if (!u) location.href = "/login.html";
+      if (u.roli !== "ADMIN") location.href = "/dashboard-user.html";
+    </script>
+
+    <script>
+  console.log("DASHBOARD HOST LOADED", localStorage.getItem("loggedUser"));
+</script>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">SkillSwap</div>
+      <div class="nav-links">
+        <a href="/create-event.html">Create Event</a>
+        <a href="/dashboard-host.html">Dashboard</a>
+        <a href="/index.html" onclick="logout()">Logout</a>
+      </div>
+    </nav>
+
+    <!-- DASHBOARD -->
+    <section class="dashboard">
+      <h1>Host Dashboard 🎓</h1>
+      <p class="subtitle">Manage your events</p>
+
+      <!-- STATS -->
+      <div class="stats-grid">
+        <div class="glass-card">
+          <h3>Total Events</h3>
+          <p id="totalEvents">0</p>
+        </div>
+        <div class="glass-card">
+  <h3>Total Participants</h3>
+  <p id="totalParticipants">0</p>
+</div>
+
+<div class="glass-card">
+  <h3>My Ratings</h3>
+  <p>⭐ <span id="avgRating">—</span> <span id="ratingCount" style="opacity:.7;font-size:14px;"></span></p>
+</div>
+      </div>
+
+      <!-- MY EVENTS -->
+      <h2>My Events</h2>
+      <div class="events-grid" id="hostEvents"></div>
+    </section>
+
+    <!-- FOOTER -->
+     <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>SkillSwap</h3>
+        <p>Learn. Teach. Connect.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#categories">Categories</a>
+        <a href="#featured">Events</a>
+        <a href="/register.html">Join</a>
+      </div>
+
+      <div class="footer-social">
+        <span>Follow us</span>
+        <div class="social-icons">
+          <a href="#">🌐</a>
+          <a href="#">📸</a>
+          <a href="#">💬</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 SkillSwap. All rights reserved.</p>
+    </div>
+  </footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/dashboard-host.js"></script>
+    <script src="/js/evente.js"></script>
+    <script>
+      function logout() {
+        // localStorage.clear();
+        window.location.href = "/login.html";
+      }
+    </script>
+  </body>
+</html>

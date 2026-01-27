@@ -31,6 +31,10 @@ public class Eventi {
 
     @Column(nullable = false)
     private int kufiriPjesemarresve; // 0 = pa limit
+    // 
+    @Column(length = 2000)
+    private String fotoUrl;
+
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -44,6 +48,7 @@ public class Eventi {
     @JoinColumn(name = "kategori_id")
     private KategoriAftesie kategoria;
 
+    
     public Eventi() {}
 
     // --- getters & setters ---
@@ -76,4 +81,7 @@ public class Eventi {
 
     public KategoriAftesie getKategoria() { return kategoria; }
     public void setKategoria(KategoriAftesie kategoria) { this.kategoria = kategoria; }
+
+    public String getFotoUrl() { return fotoUrl; }
+    public void setFotoUrl(String fotoUrl) { this.fotoUrl = fotoUrl; }
 }

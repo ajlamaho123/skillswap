@@ -86,7 +86,8 @@ public class EventiSherbimi {
         e.setStatusi(StatusEventi.AKTIV);
         e.setHost(host);
         e.setKategoria(kategori);
-
+        e.setFotoUrl(dto.getFotoUrl());
+        
         Eventi iRuajtur = eventiRuajtesa.save(e);
         return toDetajeDto(iRuajtur);
     }
@@ -114,6 +115,11 @@ public class EventiSherbimi {
         ekzistues.setVendndodhja(dto.getVendndodhja().trim());
         ekzistues.setKufiriPjesemarresve(dto.getKufiriPjesemarresve());
         ekzistues.setKategoria(kategori);
+        ekzistues.setFotoUrl(dto.getFotoUrl());
+
+        if (dto.getFotoUrl() != null && !dto.getFotoUrl().isBlank()) {
+            ekzistues.setFotoUrl(dto.getFotoUrl().trim());
+        }
 
         Eventi iRuajtur = eventiRuajtesa.save(ekzistues);
         return toDetajeDto(iRuajtur);
@@ -135,36 +141,37 @@ public class EventiSherbimi {
     private void validoDto(EventKrijoDto dto) {
         validimIBashket(dto.getHostId(), dto.getKategoriId(), dto.getTitulli(),
                 dto.getPershkrimi(), dto.getData(), dto.getOra(),
-                dto.getVendndodhja(), dto.getKufiriPjesemarresve());
+                dto.getVendndodhja(), dto.getKufiriPjesemarresve(), dto.getFotoUrl());
     }
 
     private void validoDto(EventPerditesoDto dto) {
         validimIBashket(dto.getHostId(), dto.getKategoriId(), dto.getTitulli(),
                 dto.getPershkrimi(), dto.getData(), dto.getOra(),
-                dto.getVendndodhja(), dto.getKufiriPjesemarresve());
+                dto.getVendndodhja(), dto.getKufiriPjesemarresve(), dto.getFotoUrl());
     }
 
     private void validimIBashket(Long hostId, Long kategoriId, String titulli,
-            String pershkrimi, String data, String ora,
-            String vendndodhja, int kufiri) {
+        String pershkrimi, String data, String ora,
+        String vendndodhja, int kufiri, String fotoUrl) {
 
-        if (hostId == null)
-            throw new RuntimeException("hostId eshte i detyrueshem.");
-        if (kategoriId == null)
-            throw new RuntimeException("kategoriId eshte i detyrueshem.");
-        if (titulli == null || titulli.isBlank())
-            throw new RuntimeException("Titulli eshte i detyrueshem.");
-        if (pershkrimi == null || pershkrimi.isBlank())
-            throw new RuntimeException("Pershkrimi eshte i detyrueshem.");
-        if (data == null || data.isBlank())
-            throw new RuntimeException("Data eshte e detyrueshme.");
-        if (ora == null || ora.isBlank())
-            throw new RuntimeException("Ora eshte e detyrueshme.");
-        if (vendndodhja == null || vendndodhja.isBlank())
-            throw new RuntimeException("Vendndodhja eshte e detyrueshme.");
-        if (kufiri < 0)
-            throw new RuntimeException("Kufiri i pjesemarresve nuk mund te jete negativ.");
+    if (hostId == null) throw new RuntimeException("hostId eshte i detyrueshem.");
+    if (kategoriId == null) throw new RuntimeException("kategoriId eshte i detyrueshem.");
+    if (titulli == null || titulli.isBlank()) throw new RuntimeException("Titulli eshte i detyrueshem.");
+    if (pershkrimi == null || pershkrimi.isBlank()) throw new RuntimeException("Pershkrimi eshte i detyrueshem.");
+    if (data == null || data.isBlank()) throw new RuntimeException("Data eshte e detyrueshme.");
+    if (ora == null || ora.isBlank()) throw new RuntimeException("Ora eshte e detyrueshme.");
+    if (vendndodhja == null || vendndodhja.isBlank()) throw new RuntimeException("Vendndodhja eshte e detyrueshme.");
+    if (kufiri < 0) throw new RuntimeException("Kufiri i pjesemarresve nuk mund te jete negativ.");
+
+    // fotoUrl OPSIONALE (lejohet null/blank)
+    if (fotoUrl != null && !fotoUrl.isBlank()) {
+        String f = fotoUrl.trim();
+        if (!(f.startsWith("http://") || f.startsWith("https://"))) {
+            throw new RuntimeException("Foto URL duhet te jete link (http/https).");
+        }
     }
+}
+
 
     private EventListResponseDto toListDto(Eventi e) {
         String shkurt = e.getPershkrimi();
@@ -184,7 +191,8 @@ public class EventiSherbimi {
                 e.getKategoria().getEmri(),
                 e.getHost().getId(),
                 e.getHost().getEmri(),
-                e.getHost().getMbiemri());
+                e.getHost().getMbiemri(),
+                e.getFotoUrl());
     }
 
     private EventDetajeResponseDto toDetajeDto(Eventi e) {
@@ -201,6 +209,7 @@ public class EventiSherbimi {
                 e.getKategoria().getEmri(),
                 e.getHost().getId(),
                 e.getHost().getEmri(),
-                e.getHost().getMbiemri());
+                e.getHost().getMbiemri(),
+                e.getFotoUrl());
     }
 }

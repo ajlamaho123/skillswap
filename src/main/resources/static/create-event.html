@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create SkillSwap Event</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- GLOBAL STYLES -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- <link rel="stylesheet" href="/css/home.css" /> -->
+  </head>
+
+  <body>
+    <!-- AUTH CHECK -->
+    <script>
+      const u = JSON.parse(localStorage.getItem("loggedUser"));
+      if (!u) location.href = "/login.html";
+      if (u.roli !== "ADMIN") location.href = "/dashboard-user.html";
+    </script>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">SkillSwap</div>
+      <div class="nav-links">
+        <a href="/dashboard-host.html">Dashboard</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </nav>
+
+    <section class="dashboard">
+      <h1 style="text-align:center; margin-bottom: 10px;">Create Event ✨</h1>
+      <p class="subtitle" style="text-align:center;">Add event details and publish it for users.</p>
+
+      <div class="glass-card form-card">
+        <form id="createEventForm" class="form-grid">
+          <div class="form-field">
+            <label for="titulli">Title</label>
+            <input type="text" id="titulli" placeholder="Event Title" required />
+          </div>
+
+          <div class="form-field">
+            <label for="pershkrimi">Description</label>
+            <textarea
+              id="pershkrimi"
+              placeholder="Write a short description..."
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-2col">
+            <div class="form-field">
+              <label for="data">Date</label>
+              <input type="date" id="data" required />
+            </div>
+
+            <div class="form-field">
+              <label for="ora">Time</label>
+              <input type="time" id="ora" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="vendndodhja">Location</label>
+            <input type="text" id="vendndodhja" placeholder="Shkoder, Cafe Qyteti..." required />
+          </div>
+
+          <div class="form-2col">
+            <div class="form-field">
+              <label for="kufiriPjesemarresve">Max participants</label>
+              <input
+                type="number"
+                id="kufiriPjesemarresve"
+                placeholder="Max Participants"
+                min="1"
+                value="10"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="kategoriId">Category</label>
+              <select id="kategoriId" required>
+                <option value="">Select Category</option>
+                <option value="1">Programim</option>
+                <option value="2">Dizajn</option>
+                <option value="3">Fotografi</option>
+                <option value="4">Fitness</option>
+                <option value="5">Gjuhe</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- OPTIONAL PHOTO URL (future-proof) -->
+          <div class="form-field">
+            <label for="fotoUrl">Event photo (optional)</label>
+            <input type="url" id="fotoUrl" placeholder="Photo URL (optional)" />
+
+            <div class="img-preview">
+              <img id="fotoPreview" alt="Preview" />
+            </div>
+            <small class="muted">
+              Tip: përdor Unsplash/Pexels link (jo Google Images).
+            </small>
+          </div>
+
+          <button class="btn" type="submit">Create Event</button>
+
+          <p id="msg" class="form-msg"></p>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      function logout() {
+        localStorage.clear();
+        window.location.href = "/login.html";
+      }
+
+      // Only UI preview — nuk prek backend / create-event.js
+      (function photoPreview() {
+        const input = document.getElementById("fotoUrl");
+        const img = document.getElementById("fotoPreview");
+        if (!input || !img) return;
+
+        input.addEventListener("input", () => {
+          const url = input.value.trim();
+          if (!url) {
+            img.removeAttribute("src");
+            img.style.display = "none";
+            return;
+          }
+          img.src = url;
+          img.style.display = "block";
+        });
+
+        img.onerror = () => {
+          img.style.display = "none";
+        };
+      })();
+    </script>
+
+    <!-- If your create-event.js uses api helpers, keep this -->
+    <script src="/js/api.js"></script>
+    <script src="/js/create-event.js"></script>
+  </body>
+</html>

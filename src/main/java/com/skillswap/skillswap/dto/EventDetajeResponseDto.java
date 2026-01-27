@@ -17,12 +17,14 @@ public class EventDetajeResponseDto {
     private String hostEmri;
     private String hostMbiemri;
 
-    public EventDetajeResponseDto() {}
+    private String fotoUrl;
+
+    public EventDetajeResponseDto() {} // ✅
 
     public EventDetajeResponseDto(Long id, String titulli, String pershkrimi, String data, String ora,
                                   String vendndodhja, int kufiriPjesemarresve, String statusi,
                                   Long kategoriId, String kategoriEmri,
-                                  Long hostId, String hostEmri, String hostMbiemri) {
+                                  Long hostId, String hostEmri, String hostMbiemri, String fotoUrl) {
         this.id = id;
         this.titulli = titulli;
         this.pershkrimi = pershkrimi;
@@ -36,6 +38,7 @@ public class EventDetajeResponseDto {
         this.hostId = hostId;
         this.hostEmri = hostEmri;
         this.hostMbiemri = hostMbiemri;
+        this.fotoUrl = fotoUrl;
     }
 
     public Long getId() { return id; }
@@ -51,4 +54,5 @@ public class EventDetajeResponseDto {
     public Long getHostId() { return hostId; }
     public String getHostEmri() { return hostEmri; }
     public String getHostMbiemri() { return hostMbiemri; }
+    public String getFotoUrl() { return fotoUrl; }
 }

@@ -1,10 +1,15 @@
 package com.skillswap.skillswap.dto;
 
+import com.skillswap.skillswap.modelet.enums.RoliPerdoruesit;
+
+// @SuppressWarnings("unused")
 public class RegjistroDto {
+
     private String emri;
     private String mbiemri;
     private String email;
     private String fjalekalim;
+    private RoliPerdoruesit roli; // SHTO KETE
 
     public RegjistroDto() {}
 
@@ -19,4 +24,7 @@ public class RegjistroDto {
 
     public String getFjalekalim() { return fjalekalim; }
     public void setFjalekalim(String fjalekalim) { this.fjalekalim = fjalekalim; }
+
+    public RoliPerdoruesit getRoli() { return roli; }
+    public void setRoli(RoliPerdoruesit roli) { this.roli = roli; }
 }

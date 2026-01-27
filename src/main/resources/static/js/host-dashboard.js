@@ -1,9 +1,7 @@
 // ================= AUTH GUARD =================
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUser = JSON.parse(localStorage.getItem("loggedUser"));
+if (!currentUser) window.location.href = "/login.html";
 
-if (!currentUser) {
-  window.location.href = "login.html";
-}
 
 if (currentUser.role !== "host") {
   window.location.href = "dashboard-user.html";

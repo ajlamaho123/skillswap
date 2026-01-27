@@ -10,6 +10,7 @@ public class EventPerditesoDto {
     private String ora;  // "HH:mm"
     private String vendndodhja;
     private int kufiriPjesemarresve;
+    private String fotoUrl;
 
     public EventPerditesoDto() {}
 
@@ -75,5 +76,13 @@ public class EventPerditesoDto {
 
     public void setKufiriPjesemarresve(int kufiriPjesemarresve) {
         this.kufiriPjesemarresve = kufiriPjesemarresve;
+    }
+
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+    
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
     }
 }

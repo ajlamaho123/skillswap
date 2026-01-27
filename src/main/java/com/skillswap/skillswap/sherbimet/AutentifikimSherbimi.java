@@ -27,13 +27,23 @@ public class AutentifikimSherbimi {
         if (dto.getFjalekalim() == null || dto.getFjalekalim().isBlank()) {
             throw new RuntimeException("Fjalekalimi eshte i detyrueshem.");
         }
+        if (dto.getEmri() == null || dto.getEmri().isBlank()) {
+            throw new RuntimeException("Emri eshte i detyrueshem.");
+        }
+        if (dto.getMbiemri() == null || dto.getMbiemri().isBlank()) {
+            throw new RuntimeException("Mbiemri eshte i detyrueshem.");
+        }
+
+        RoliPerdoruesit roli = dto.getRoli();
+        if (roli == null)
+            roli = RoliPerdoruesit.PERDORUES;
 
         Perdoruesi p = new Perdoruesi(
                 dto.getEmri(),
                 dto.getMbiemri(),
                 dto.getEmail(),
                 dto.getFjalekalim(),
-                RoliPerdoruesit.PERDORUES
+                roli //  përdor rolin që vjen nga register
         );
 
         Perdoruesi iRuajtur = perdoruesiRuajtesa.save(p);
@@ -43,8 +53,7 @@ public class AutentifikimSherbimi {
                 iRuajtur.getEmri(),
                 iRuajtur.getMbiemri(),
                 iRuajtur.getEmail(),
-                iRuajtur.getRoli().name()
-        );
+                iRuajtur.getRoli().name());
     }
 
     public PerdoruesResponseDto hyr(LoginDto dto) {
@@ -55,12 +64,16 @@ public class AutentifikimSherbimi {
             throw new RuntimeException("Email ose fjalekalim i pasakte.");
         }
 
+        if (dto.getEmail() == null || dto.getEmail().isBlank()
+                || dto.getFjalekalim() == null || dto.getFjalekalim().isBlank()) {
+            throw new RuntimeException("Email ose fjalekalim i pasakte.");
+        }
+
         return new PerdoruesResponseDto(
                 p.getId(),
                 p.getEmri(),
                 p.getMbiemri(),
                 p.getEmail(),
-                p.getRoli().name()
-        );
+                p.getRoli().name());
     }
 }
